@@ -1,35 +1,57 @@
-
+let pageMethod = require('./util/getPages');
+pages = pageMethod.pages();
 module.exports = {
-    // 构建一个多页应用
-    /**
-     * 不是每个应用都需要是一个单页应用。
-     * Vue CLI 支持使用 vue.config.js 中的 pages 选项构建一个多页面的应用。
-     * 构建好的应用将会在不同的入口之间高效共享通用的 chunk 以获得最佳的加载性能。
-     */
-    pages: {
+    pages,
+    publicPath: process.env.NODE_ENV === 'production'
+    ? '/dist/'
+    : '/',
+}
 
-        /**
-         * 在 multi-page 模式下构建应用。每个“page”应该有一个对应的 JavaScript 入口文件。
-         * 其值应该是一个对象，对象的 key 是入口的名字，value 是：一个指定了 entry, template, filename, title 和 chunks 的对象 (除了 entry 之外都是可选的)；
-         * 或一个指定其 entry 的字符串。
-         */
-        index: {
-            entry: 'src/index/main.js',// page 的入口
-            template: 'public/index.html',// 模板来源
-            filename: 'index.html',// 在 dist/index.html 的输出
-            // 当使用 title 选项时，
-            // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
-            title: 'Index Page',
-            // 在这个页面中包含的块，默认情况下会包含
-            // 提取出来的通用 chunk 和 vendor chunk。
-            chunks: ['chunk-vendors', 'chunk-common', 'index']
-        },
-        // 当使用只有入口的字符串格式时，
-        // 模板会被推导为 `public/subpage.html`
-        // 并且如果找不到的话，就回退到 `public/index.html`。
-        // 输出文件名会被推导为 `subpage.html`。
-        subpage: 'src/subpage/main.js'
-    }
+
+
+
+
+// module.exports = {
+//     // 构建一个多页应用
+//     /**
+//      * 不是每个应用都需要是一个单页应用。
+//      * Vue CLI 支持使用 vue.config.js 中的 pages 选项构建一个多页面的应用。
+//      * 构建好的应用将会在不同的入口之间高效共享通用的 chunk 以获得最佳的加载性能。
+//      */
+//     pages: {
+
+//         /**
+//          * 在 multi-page 模式下构建应用。每个“page”应该有一个对应的 JavaScript 入口文件。
+//          * 其值应该是一个对象，对象的 key 是入口的名字，value 是：一个指定了 entry, template, filename, title 和 chunks 的对象 (除了 entry 之外都是可选的)；
+//          * 或一个指定其 entry 的字符串。
+//          */
+//         newspaperUser: {
+//             entry: 'src/pages/newspaper_user/main.js',// page 的入口
+//             template: 'public/newspaper_user.html',// 模板来源
+//             filename: 'index.html',// 在 dist/index.html 的输出
+//             // 当使用 title 选项时，
+//             // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+//             title: 'newspaperUser Page',
+//             // 在这个页面中包含的块，默认情况下会包含
+//             // 提取出来的通用 chunk 和 vendor chunk。
+//             // chunks: ['chunk-vendors', 'chunk-common', 'index']
+//         },
+//         // 当使用只有入口的字符串格式时，
+//         // 模板会被推导为 `public/subpage.html`
+//         // 并且如果找不到的话，就回退到 `public/index.html`。
+//         // 输出文件名会被推导为 `subpage.html`。
+//         newspaperAdmin: {
+//             entry: 'src/pages/newspaper_admin/main.js',// page 的入口
+//             template: 'public/newspaper_admin.html',// 模板来源
+//             filename: 'index.html',// 在 dist/index.html 的输出
+//             // 当使用 title 选项时，
+//             // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
+//             title: 'newspaperAdmin Page',
+//             // 在这个页面中包含的块，默认情况下会包含
+//             // 提取出来的通用 chunk 和 vendor chunk。
+//             // chunks: ['chunk-vendors', 'chunk-common', 'index']
+//         },
+//     }
 
 
 
@@ -108,4 +130,4 @@ module.exports = {
     //             return args
     //         })
     // }
-}
+// }
